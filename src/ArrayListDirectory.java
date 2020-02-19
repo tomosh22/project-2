@@ -13,10 +13,7 @@ public class ArrayListDirectory implements Directory{
             String line;
             while((line = reader.readLine()) != null){
                 String[] values = line.split(",");
-                Entry entry = new Entry();
-                entry.surname(values[0]);
-                entry.initials(values[1]);
-                entry.ext(values[2]);
+                Entry entry = new Entry(values[0],values[1],values[2]);
                 ald.insertEntry(entry);
             }
             reader.close();
@@ -26,7 +23,7 @@ public class ArrayListDirectory implements Directory{
         }
     }
     public boolean contains(Entry entry){
-        for(Entry entryCheck:directory){
+        for(Entry entryCheck:this.directory){
             if (entryCheck.equals(entry)){
                 return true;
             }
@@ -35,37 +32,37 @@ public class ArrayListDirectory implements Directory{
     }
     public void insertEntry(Entry entry) {
         if(!this.contains(entry)){
-            directory.add(entry);
+            this.directory.add(entry);
         }
     }
 
     public void deleteEntryUsingName(String surname) {
-        for(Entry entry:directory){
-            if(entry.surname() == surname){
-                directory.remove(entry);
+        for(Entry entry:this.directory){
+            if(entry.surname().equals(surname)){
+                this.directory.remove(entry);
             }
         }
     }
 
     public void deleteEntryUsingExtension(String number) {
-        for(Entry entry:directory){
-            if(entry.ext() == number){
-                directory.remove(entry);
+        for(Entry entry:this.directory){
+            if(entry.ext().equals(number)){
+                this.directory.remove(entry);
             }
         }
     }
 
     public void updateExtensionUsingName(String surname, String newNumber) {
-        for(Entry entry:directory){
-            if(entry.surname() == surname){
+        for(Entry entry:this.directory){
+            if(entry.surname().equals(surname)){
                 entry.ext(newNumber);
             }
         }
     }
 
     public String lookupExtension(String surname) {
-        for(Entry entry:directory){
-            if(entry.surname() == surname){
+        for(Entry entry:this.directory){
+            if(entry.surname().equals(surname)){
                 return entry.ext();
             }
         }
@@ -73,7 +70,6 @@ public class ArrayListDirectory implements Directory{
     }
 
     public List<Entry> toArrayList() {
-        return null;
-        //it's already an arrayList
+        return this.directory;
     }
 }

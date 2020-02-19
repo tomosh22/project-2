@@ -14,10 +14,7 @@ public class ArrayDirectory implements Directory {
             String line;
             while((line = reader.readLine()) != null){
                 String[] values = line.split(",");
-                Entry entry = new Entry();
-                entry.surname(values[0]);
-                entry.initials(values[1]);
-                entry.ext(values[2]);
+                Entry entry = new Entry(values[0],values[1],values[2]);
                 ad.insertEntry(entry);
             }
             reader.close();
@@ -31,7 +28,7 @@ public class ArrayDirectory implements Directory {
 
     }
     public boolean contains(Entry entry){
-        for(Entry entryCheck:directory){
+        for(Entry entryCheck:this.directory){
             if (entryCheck.equals(entry)){
                 return true;
             }
@@ -41,44 +38,44 @@ public class ArrayDirectory implements Directory {
 
     public void insertEntry(Entry entry){
         if(!this.contains(entry)){
-            directory = Arrays.copyOf(directory, directory.length + 1);
-            directory[directory.length-1] = entry;
+            this.directory = Arrays.copyOf(this.directory, this.directory.length + 1);
+            this.directory[this.directory.length-1] = entry;
         }
     }
 
     public void deleteEntryUsingName(String surname) {
         Entry[] dupeDir = {};
-        for(Entry entry:directory){
-            if(entry.surname()!=surname){
+        for(Entry entry:this.directory){
+            if(!entry.surname().equals(surname)){
                 dupeDir = Arrays.copyOf(dupeDir,dupeDir.length + 1);
                 dupeDir[dupeDir.length-1] = entry;
             }
         }
-        directory = dupeDir;
+        this.directory = dupeDir;
     }
 
     public void deleteEntryUsingExtension(String number) {
         Entry[] dupeDir = {};
-        for(Entry entry:directory){
-            if(entry.ext()!=number){
+        for(Entry entry:this.directory){
+            if(!entry.ext().equals(number)){
                 dupeDir = Arrays.copyOf(dupeDir,dupeDir.length + 1);
                 dupeDir[dupeDir.length-1] = entry;
             }
         }
-        directory = dupeDir;
+        this.directory = dupeDir;
     }
 
     public void updateExtensionUsingName(String surname, String newNumber) {
-        for(Entry entry:directory){
-            if(entry.surname() == surname){
+        for(Entry entry:this.directory){
+            if(entry.surname().equals(surname)){
                 entry.ext(newNumber);
             }
         }
     }
 
     public String lookupExtension(String surname) {
-        for(Entry entry:directory){
-            if(entry.surname() == surname){
+        for(Entry entry:this.directory){
+            if(entry.surname().equals(surname)){
                 return entry.ext();
             }
         }
@@ -87,7 +84,7 @@ public class ArrayDirectory implements Directory {
 
     public List<Entry> toArrayList() {
         ArrayList<Entry> arrayList = new ArrayList<>();
-        for(Entry entry:directory){
+        for(Entry entry:this.directory){
             arrayList.add(entry);
         }
         return arrayList;

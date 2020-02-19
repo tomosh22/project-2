@@ -33,4 +33,9 @@ public class Entry {
     public int hashCode() {
         return Objects.hash(surname, initials, ext);
     }
+    public Entry(String surname, String initials, String ext){
+        this.surname = surname;
+        this.initials = initials;
+        this.ext = ext;
+    }
 }
