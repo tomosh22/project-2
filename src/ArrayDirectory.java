@@ -68,6 +68,6 @@ public class ArrayDirectory implements Directory {
     }
 
     public Entry getRandomEntry(){
-        return this.directory[(int)Math.random()*this.directory.length];
+        return this.directory[(int) (Math.random() * this.directory.length)];
     }
 }

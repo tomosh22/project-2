@@ -58,6 +58,6 @@ public class ArrayListDirectory implements Directory{
         return this.directory;
     }
     public Entry getRandomEntry(){
-        return this.directory.get((int)Math.random()*this.directory.size());
+        return this.directory.get((int) (Math.random() * this.directory.size()));
     }
 }
