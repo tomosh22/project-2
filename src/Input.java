@@ -6,7 +6,6 @@ public class Input{
     private String path = "";
 
     public void InputFromCSVToDirectory(Directory directory){
-        Entry[] array = {};
         try {
             Scanner scanner = new Scanner(new FileReader(this.path));
             String line;
@@ -15,10 +14,10 @@ public class Input{
                 Entry entry = new Entry(values[0],values[1],values[2]);
                 directory.insertEntry(entry);
             }
+            scanner.reset();
             scanner.close();
         }
         catch(Exception FileNotFoundException){
-            System.out.println("File does not exist");
         }
     }
 
@@ -41,9 +40,8 @@ public class Input{
                 cont = false;
             }
         }
+        scanner.close();
     }
-
-
 
     public Input(String file){
         this.path = Input.class.getResource(file).getFile();

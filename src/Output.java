@@ -1,7 +1,3 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 public class Output {
     public Output(Directory directory){
         int longestName = 0;
