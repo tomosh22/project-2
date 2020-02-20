@@ -51,9 +51,13 @@ public class HashMapDirectory implements Directory{
 
     public List<Entry> toArrayList() {
         ArrayList<Entry> arrayList = new ArrayList<>();
-        for(Map.Entry<Integer,Entry> map:directory.entrySet()){
-            arrayList.add(directory.get(map.getKey()));
+        for(Map.Entry<Integer,Entry> map:this.directory.entrySet()){
+            arrayList.add(this.directory.get(map.getKey()));
         }
         return arrayList;
+    }
+    public Entry getRandomEntry(){
+        Integer key = (int)this.directory.keySet().toArray()[(int)Math.random()*this.directory.keySet().toArray().length];
+        return this.directory.get(key);
     }
 }

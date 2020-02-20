@@ -57,4 +57,7 @@ public class ArrayListDirectory implements Directory{
     public List<Entry> toArrayList() {
         return this.directory;
     }
+    public Entry getRandomEntry(){
+        return this.directory.get((int)Math.random()*this.directory.size());
+    }
 }

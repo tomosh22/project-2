@@ -52,5 +52,6 @@ public interface Directory {
      */
     List<Entry> toArrayList();
     boolean contains(Entry entry);
+    Entry getRandomEntry();
 
 }
